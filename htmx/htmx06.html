@@ -12,9 +12,8 @@
   <!-- noindex,nofollow -->
   <meta name="robots" content="noindex,nofollow">
 
-  <title>htmx05</title>
+  <title>htmx06</title>
   <!-- ページ属性情報 -->
-  <title>タイトルタイトルタイトル</title>
   <meta name="description" content="詳細説明詳細説明詳細説明">
 
   <!-- OGP -->
@@ -60,14 +59,14 @@
     <span class="html-indicator">ロード中...</span>
   </div>
 
-    <div x-show="tab === 'long'"
+  <div x-show="tab === 'long'"
     hx-get="https://htmx-server.pages.dev/long"
     hx-trigger="revealed"
     hx-target="this">
     <span class="html-indicator">ロード中...</span>
   </div>
 
-    <div x-show="tab === 'short'"
+  <div x-show="tab === 'short'"
     hx-get="https://htmx-server.pages.dev/short"
     hx-trigger="revealed"
     hx-target="this">
