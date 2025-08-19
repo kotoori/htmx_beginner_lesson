@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja" prefix="og: https://ogp.me/ns#">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="format-detection" content="telephone=no">
+
+  <!-- htmx設定 -->
+  <meta name="htmx-config" content='{"selfRequestsOnly":false}'>
+
+  <!-- noindex,nofollow -->
+  <meta name="robots" content="noindex,nofollow">
+
+  <title>htmx05</title>
+  <!-- ページ属性情報 -->
+  <title>タイトルタイトルタイトル</title>
+  <meta name="description" content="詳細説明詳細説明詳細説明">
+
+  <!-- OGP -->
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:url" content="ページのURL(絶対パス)">
+  <meta property="og:type" content="ページの種類(website or blog or article)">
+  <meta property="og:title" content="タイトル">
+  <meta property="og:description" content="説明文">
+  <meta property="og:site_name" content="Webサイト名">
+  <meta property="og:image" content="表示したいサムネイル画像のURL">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="カードの大きさ(summary or summary_large_image)">
+
+  <!-- favicon -->
+  <link rel="icon" href="./assets/img/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="">
+
+  <!-- css -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!-- script -->
+  <script src="htmx.min.js" defer></script>
+
+  <style>
+    #custom-indicator{
+      display: none;
+      color: red;
+
+    }
+    .fade-in{
+      animation: fadeIn 2s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from {
+        translate: 0 1em;
+        opacity: 0;
+      }
+      to {
+        translate: 0 0;
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <button id="load-img"
+    hx-get="https://htmx-server.pages.dev/list"
+    hx-target="#img-area">
+    画像を取得
+  </button>
+  <div id="custom-indicator">ロード中...</div>
+  <div id="img-area"></div>
+
+  <script>
+    document.addEventListener('htmx:beforeRequest', function(e){
+      if(e.target.id === 'load-img') { //ボタンがクリックされて、そのボタンのidがload-imgの場合
+        document.querySelector('#custom-indicator').style.display = 'block';
+      }
+    });
+
+    document.body.addEventListener('html:afterSwap', function(e){
+      if(e.target.id === 'img-area') { // img-areaにコンテンツが挿入された後
+        document.querySelector('#custom-indicator').style.display = 'none';
+        document.querySelector('#img-area').classList.add('fade-in');
+        document.querySelector('#img-area').classList.add('fade-in');
+        document.querySelector('#img-area').classList.add('fade-in');
+      }
+    });
+  </script>
+
+</body>
+</html>
